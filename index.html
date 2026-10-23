@@ -161,31 +161,40 @@ body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .hero-scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,rgba(201,162,39,.6),transparent);animation:pulse-line 2.2s ease-in-out infinite}
 @keyframes pulse-line{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* HERO QUOTES COLUMN */
+/* HERO IMAGE REEL */
 .hero-layout{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1180px;width:100%}
 .hero-layout .hero-inner{max-width:none}
-.hero-quotes{height:520px;overflow:hidden;position:relative;
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 13%,#000 87%,transparent 100%);
-  mask-image:linear-gradient(to bottom,transparent 0%,#000 13%,#000 87%,transparent 100%)}
-.hq-track{display:flex;flex-direction:column;gap:14px;animation:hq 34s linear infinite}
-.hq-track:hover{animation-play-state:paused}
-.hq-item{
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(196,131,110,.18);
-  border-left:2.5px solid var(--gold);
-  border-radius:10px;padding:20px 22px;
-  transition:background .3s,border-color .3s;
+.hero-reel{
+  height:520px;overflow:hidden;position:relative;border-radius:14px;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 11%,#000 89%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 11%,#000 89%,transparent 100%);
 }
-.hq-item:hover{background:rgba(196,131,110,.09);border-color:rgba(196,131,110,.45)}
-.hq-text{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(.95rem,1.3vw,1.12rem);font-style:italic;font-weight:400;
-  color:rgba(245,240,232,.88);line-height:1.65;
+.hr-track{display:flex;flex-direction:column;animation:hr-scroll 22s linear infinite}
+.hr-track:hover{animation-play-state:paused}
+.hr-slide{
+  border-radius:12px;overflow:hidden;position:relative;
+  flex-shrink:0;height:175px;margin-bottom:14px;
 }
-.hq-author{font-size:.65rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);margin-top:10px}
-@keyframes hq{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
-@media(max-width:960px){.hero-layout{grid-template-columns:1fr}.hero-quotes{display:none}}
-@media(prefers-reduced-motion:reduce){.hq-track{animation:none}}
+.hr-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.hr-glow{
+  position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(135deg,rgba(253,248,244,.2) 0%,transparent 45%),
+    linear-gradient(to top,rgba(28,10,18,.75) 0%,rgba(28,10,18,.1) 50%,transparent 100%);
+}
+.hr-lbl{
+  position:absolute;bottom:13px;left:16px;z-index:2;
+  font-size:.63rem;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:rgba(245,240,232,.92);
+}
+.hr-dot{
+  position:absolute;top:14px;right:15px;z-index:2;
+  width:7px;height:7px;border-radius:50%;
+  background:var(--gold);box-shadow:0 0 8px rgba(196,131,110,.7);
+}
+@keyframes hr-scroll{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
+@media(max-width:960px){.hero-layout{grid-template-columns:1fr}.hero-reel{display:none}}
+@media(prefers-reduced-motion:reduce){.hr-track{animation:none}}
 
 /* TICKER */
 .ticker{background:var(--gold);padding:14px 0;overflow:hidden}
@@ -562,25 +571,17 @@ body.ch #c-ring{width:66px;height:66px;border-color:rgba(196,131,110,.2)}
         </div>
       </div>
 
-      <div class="hero-quotes he he-2" aria-hidden="true">
-        <div class="hq-track">
-          <div class="hq-item"><p class="hq-text">Education is the most powerful weapon which you can use to change the world.</p><div class="hq-author">— Nelson Mandela</div></div>
-          <div class="hq-item"><p class="hq-text">The beautiful thing about learning is that no one can take it away from you.</p><div class="hq-author">— B.B. King</div></div>
-          <div class="hq-item"><p class="hq-text">Intelligence plus character — that is the goal of true education.</p><div class="hq-author">— Martin Luther King Jr.</div></div>
-          <div class="hq-item"><p class="hq-text">An investment in knowledge pays the best interest.</p><div class="hq-author">— Benjamin Franklin</div></div>
-          <div class="hq-item"><p class="hq-text">The roots of education are bitter, but the fruit is sweet.</p><div class="hq-author">— Aristotle</div></div>
-          <div class="hq-item"><p class="hq-text">Education breeds confidence. Confidence breeds hope. Hope breeds peace.</p><div class="hq-author">— Confucius</div></div>
-          <div class="hq-item"><p class="hq-text">The more that you read, the more things you will know.</p><div class="hq-author">— Dr. Seuss</div></div>
-          <div class="hq-item"><p class="hq-text">Upon the subject of education, I can only say that I view it as the most important subject which we as a people can be engaged in.</p><div class="hq-author">— Abraham Lincoln</div></div>
+      <div class="hero-reel he he-2" aria-hidden="true">
+        <div class="hr-track">
+          <div class="hr-slide"><img src="images/school1.webp" class="hr-bg" alt=""><div class="hr-glow"></div><div class="hr-lbl">Student Life</div><div class="hr-dot"></div></div>
+          <div class="hr-slide"><img src="images/school2.webp" class="hr-bg" alt=""><div class="hr-glow"></div><div class="hr-lbl">Learning Together</div><div class="hr-dot"></div></div>
+          <div class="hr-slide"><img src="images/school3.webp" class="hr-bg" alt=""><div class="hr-glow"></div><div class="hr-lbl">Science Lab</div><div class="hr-dot"></div></div>
+          <div class="hr-slide"><img src="images/school4.webp" class="hr-bg" alt=""><div class="hr-glow"></div><div class="hr-lbl">ICSE Curriculum</div><div class="hr-dot"></div></div>
           <!-- duplicate for seamless loop -->
-          <div class="hq-item"><p class="hq-text">Education is the most powerful weapon which you can use to change the world.</p><div class="hq-author">— Nelson Mandela</div></div>
-          <div class="hq-item"><p class="hq-text">The beautiful thing about learning is that no one can take it away from you.</p><div class="hq-author">— B.B. King</div></div>
-          <div class="hq-item"><p class="hq-text">Intelligence plus character — that is the goal of true education.</p><div class="hq-author">— Martin Luther King Jr.</div></div>
-          <div class="hq-item"><p class="hq-text">An investment in knowledge pays the best interest.</p><div class="hq-author">— Benjamin Franklin</div></div>
-          <div class="hq-item"><p class="hq-text">The roots of education are bitter, but the fruit is sweet.</p><div class="hq-author">— Aristotle</div></div>
-          <div class="hq-item"><p class="hq-text">Education breeds confidence. Confidence breeds hope. Hope breeds peace.</p><div class="hq-author">— Confucius</div></div>
-          <div class="hq-item"><p class="hq-text">The more that you read, the more things you will know.</p><div class="hq-author">— Dr. Seuss</div></div>
-          <div class="hq-item"><p class="hq-text">Upon the subject of education, I can only say that I view it as the most important subject which we as a people can be engaged in.</p><div class="hq-author">— Abraham Lincoln</div></div>
+          <div class="hr-slide"><img src="images/school1.webp" class="hr-bg" alt=""><div class="hr-glow"></div><div class="hr-lbl">Student Life</div><div class="hr-dot"></div></div>
+          <div class="hr-slide"><img src="images/school2.webp" class="hr-bg" alt=""><div class="hr-glow"></div><div class="hr-lbl">Learning Together</div><div class="hr-dot"></div></div>
+          <div class="hr-slide"><img src="images/school3.webp" class="hr-bg" alt=""><div class="hr-glow"></div><div class="hr-lbl">Science Lab</div><div class="hr-dot"></div></div>
+          <div class="hr-slide"><img src="images/school4.webp" class="hr-bg" alt=""><div class="hr-glow"></div><div class="hr-lbl">ICSE Curriculum</div><div class="hr-dot"></div></div>
         </div>
       </div>
     </div>
